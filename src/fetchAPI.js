@@ -5,7 +5,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 const imageType = 'photo';
 const orientationType = 'horizontal';
 const safesearch = 'true';
-const countImage = '50';
+const countImage = '40';
 
 async function fetchImages(query, page) {
   const response = await axios.get(
