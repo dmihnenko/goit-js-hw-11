@@ -21,7 +21,7 @@ async function onSearchForm(evt) {
   } else {
     const images = await fetchImages(query, page);
 
-    if (images.totalHits === 0) {
+    if (images.totalHits <= 0) {
       Notiflix.Notify.failure(
         "Sorry, there are no images matching your search query. Please try again."
       );
