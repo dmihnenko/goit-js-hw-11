@@ -62,7 +62,7 @@ function buildMarkup(obj) {
         </div>`;
     })
     .join('');
-  if (imgId === total) {
+  if (imgId >= total) {
     isEnd = true;
     markup += `<div class="js-last-observer"></div>`;
     return markup;
@@ -85,7 +85,7 @@ function onLoad(entries, observer) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.remove();
-     
+      page += 1;
       fetchImages(query, page)
         .then(data => {
           addMarkup(buildMarkup(data.hits));
@@ -101,7 +101,7 @@ function onSubmit(evt) {
   evt.preventDefault();
   refs.gallery.innerHTML = '';
   query = evt.currentTarget[0].value;
-  createObserver();
+
   if (query.trim() !== '') {
     fetchImages(query, page)
       .then(data => {
