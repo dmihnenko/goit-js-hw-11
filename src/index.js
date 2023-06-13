@@ -17,7 +17,7 @@ let total ;
 let observer;
 let isEnd;
 let query;
-let imgId = 0;
+let imgId;
 let lastObserver;
 
 
@@ -72,7 +72,7 @@ function buildMarkup(obj) {
 }
 function addMarkup(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
-  if (imgId <= total) {
+  if (imgId >= total) {
     createLastObserver();
   }
   window.scrollBy({
@@ -85,7 +85,7 @@ function onLoad(entries, observer) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.remove();
-      page += 1;
+     
       fetchImages(query, page)
         .then(data => {
           addMarkup(buildMarkup(data.hits));
