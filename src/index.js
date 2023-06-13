@@ -35,7 +35,7 @@ async function onSearchForm(evt) {
 async function onLoadMoreBtn() {
   page += 1;
   const images = await fetchImages(query, page);
-  if (images.hits.length < 40 && images.hits.length !== 0) {
+  if (images.totalHits < 40 && images.totalHits !== 0) {
     loadMoreBtn.classList.add("is-hidden");
     Notiflix.Notify.warning(
       "We're sorry, but you've reached the end of search results."
