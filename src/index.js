@@ -11,14 +11,15 @@ const refs = {
   observer: document.querySelector('.js-observer'),
   body: document.querySelector('body'),
   input: document.querySelector('.searcher'),
+  loadMoreBtn: document.querySelector(".load-more");
 };
 let page = 1;
 let total ;
-
 let query;
 let imgId;
 
-
+loadMoreBtn.classList.add("is-hidden");
+loadMoreBtn.addEventListener("click", onLoad);
 
 
 function buildMarkup(obj) {
