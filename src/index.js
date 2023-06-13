@@ -72,9 +72,7 @@ function buildMarkup(obj) {
 }
 function addMarkup(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
-  if (imgId >= total) {
-    createLastObserver();
-  }
+ 
   window.scrollBy({
     top: refs.input.firstElementChild.getBoundingClientRect().height,
     behavior: 'smooth',
