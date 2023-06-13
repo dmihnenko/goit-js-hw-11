@@ -14,11 +14,10 @@ const refs = {
 };
 let page = 1;
 let total ;
-let observer;
-let isEnd;
+
 let query;
 let imgId;
-let lastObserver;
+
 
 
 
@@ -81,7 +80,7 @@ function addMarkup(markup) {
   });
   lightbox.refresh();
 }
-function onLoad(entries, observer) {
+function onLoad(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.remove();
@@ -89,7 +88,7 @@ function onLoad(entries, observer) {
       fetchImages(query, page)
         .then(data => {
           addMarkup(buildMarkup(data.hits));
-          observer.observe(document.querySelector('.js-observer'));
+         
         })
         .catch(err => console.log(err));
     }
@@ -101,10 +100,7 @@ function onSubmit(evt) {
   evt.preventDefault();
   refs.gallery.innerHTML = '';
   query = evt.currentTarget[0].value;
-  if(imgId <= total){
-    createObserver();
-  }
-  
+
   if (query.trim() !== '') {
     fetchImages(query, page)
       .then(data => {
@@ -116,7 +112,7 @@ function onSubmit(evt) {
         }
         total = data.totalHits;
         addMarkup(buildMarkup(data.hits));
-        observer.observe(document.querySelector('.js-observer'));
+      
         Notiflix.Notify.success(`✅ Hooray! We found ${data.totalHits} images.`);
       })
       .catch(err => console.log(err));
@@ -124,27 +120,7 @@ function onSubmit(evt) {
 }
 
 
-function createObserver() {
-  const options = {
-    root: null,
-    rootMargin: '400px',
-    trashhold: 0,
-  };
-observer = new IntersectionObserver(onLoad, options);
-}
-function createLastObserver() {
-  const options = {
-    root: null,
-    rootMargin: '0px',
-    trashhold: 0,
-  };
-  lastObserver = new IntersectionObserver(() => {
-    Notiflix.Notify.warning(
-      'We are sorry, but you have reached the end of search results.'
-    );
-  }, options);
-  lastObserver.observe(document.querySelector('.js-last-observer'));
-}
+
 
 
 
