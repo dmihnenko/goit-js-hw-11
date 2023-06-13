@@ -115,6 +115,7 @@ function onSubmit(evt) {
         Notiflix.Notify.success(`✅ Hooray! We found ${data.totalHits} images.`);
       })
       .catch(err => console.log(err));
+      refs.loadMoreBtn.classList.remove("is-hidden");
   }
 }
 
