@@ -18,8 +18,8 @@ let total ;
 let query;
 let imgId;
 
-loadMoreBtn.classList.add("is-hidden");
-loadMoreBtn.addEventListener("click", onLoad);
+refs.loadMoreBtn.classList.add("is-hidden");
+refs.loadMoreBtn.addEventListener("click", onLoad);
 
 
 function buildMarkup(obj) {
