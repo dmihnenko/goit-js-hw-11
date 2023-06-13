@@ -127,7 +127,7 @@ function createObserver() {
     rootMargin: '400px',
     trashhold: 0,
   };
- // observer = new IntersectionObserver(onLoad, options);
+observer = new IntersectionObserver(onLoad, options);
 }
 function createLastObserver() {
   const options = {
