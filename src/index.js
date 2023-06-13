@@ -101,7 +101,9 @@ function onSubmit(evt) {
   evt.preventDefault();
   refs.gallery.innerHTML = '';
   query = evt.currentTarget[0].value;
-
+  
+if (imgId <= total) {
+  createObserver();
   if (query.trim() !== '') {
     fetchImages(query, page)
       .then(data => {
@@ -118,6 +120,7 @@ function onSubmit(evt) {
       })
       .catch(err => console.log(err));
   }
+}
 }
 
 
