@@ -13,7 +13,7 @@ const refs = {
   input: document.querySelector('.searcher'),
 };
 let page = 1;
-let total ;
+let total = 40;
 let observer;
 let isEnd;
 let query;
