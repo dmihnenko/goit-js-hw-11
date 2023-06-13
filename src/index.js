@@ -5,7 +5,6 @@ const searchForm = document.querySelector("#search-form");
 const gallery = document.querySelector(".gallery");
 const loadMoreBtn = document.querySelector(".load-more");
 let page = 1;
-let total = 40;
 let query;
 loadMoreBtn.classList.add("is-hidden");
 searchForm.addEventListener("submit", onSearchForm);
@@ -35,7 +34,7 @@ async function onSearchForm(evt) {
 async function onLoadMoreBtn() {
   page += 1;
   const images = await fetchImages(query, page);
-  if (images.hits.length < total && images.hits.length !== 0) {
+  if (images.hits.length < 40 && images.hits.length !== 0) {
     loadMoreBtn.classList.add("is-hidden");
     Notiflix.Notify.warning(
       "We're sorry, but you've reached the end of search results."
