@@ -16,6 +16,7 @@ let page = 1;
 let total ;
 let query;
 let imgId;
+let isEnd;
 
 refs.loadMoreBtn.classList.add("is-hidden");
 refs.loadMoreBtn.addEventListener("click", onLoad);
