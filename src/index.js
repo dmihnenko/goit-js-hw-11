@@ -101,7 +101,10 @@ function onSubmit(evt) {
   evt.preventDefault();
   refs.gallery.innerHTML = '';
   query = evt.currentTarget[0].value;
-  createObserver();
+  if(imgId <= total){
+    createObserver();
+  }
+  
   if (query.trim() !== '') {
     fetchImages(query, page)
       .then(data => {
