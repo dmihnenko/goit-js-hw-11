@@ -17,7 +17,7 @@ let total ;
 let observer;
 let isEnd;
 let query;
-let imgId;
+let imgId = 0;
 let lastObserver;
 
 
@@ -72,7 +72,7 @@ function buildMarkup(obj) {
 }
 function addMarkup(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
-  if (imgId >= total) {
+  if (imgId <= total) {
     createLastObserver();
   }
   window.scrollBy({
