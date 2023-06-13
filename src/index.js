@@ -8,7 +8,6 @@ import { fetchImages } from './fetchAPI';
 const refs = {
   gallery: document.querySelector('.gallery'),
   form: document.querySelector('#search-form'),
-  observer: document.querySelector('.js-observer'),
   body: document.querySelector('body'),
   input: document.querySelector('.searcher'),
   loadMoreBtn: document.querySelector(".load-more"),
@@ -20,6 +19,7 @@ let imgId;
 
 refs.loadMoreBtn.classList.add("is-hidden");
 refs.loadMoreBtn.addEventListener("click", onLoad);
+refs.form.addEventListener('submit', onSubmit);
 
 
 function buildMarkup(obj) {
@@ -111,11 +111,12 @@ function onSubmit(evt) {
         }
         total = data.totalHits;
         addMarkup(buildMarkup(data.hits));
+        refs.loadMoreBtn.classList.remove("is-hidden");
       
         Notiflix.Notify.success(`✅ Hooray! We found ${data.totalHits} images.`);
       })
       .catch(err => console.log(err));
-      refs.loadMoreBtn.classList.remove("is-hidden");
+   
   }
 }
 
@@ -124,7 +125,7 @@ function onSubmit(evt) {
 
 
 
-refs.form.addEventListener('submit', onSubmit);
+
 
 
 
