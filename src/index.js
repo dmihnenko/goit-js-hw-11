@@ -28,6 +28,7 @@ async function onSearchForm(evt) {
     } else {
       gallery.insertAdjacentHTML("beforeend", markup(images.hits));
       loadMoreBtn.classList.remove("is-hidden");
+      Notiflix.Notify.success(`We found ${images.hits} images.`);
     }
   }
 }
