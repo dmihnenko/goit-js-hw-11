@@ -96,7 +96,7 @@ function onLoad(entries, observer) {
   });
 }
 function onSubmit(evt) {
-  page = 1;
+  page = 0;
   imgId = 0;
   evt.preventDefault();
   refs.gallery.innerHTML = '';
