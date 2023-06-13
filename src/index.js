@@ -1,4 +1,4 @@
-import { fetchImages } from "./js/fetch-images";
+import { fetchImages } from "./js/fetchImages";
 import { markup } from "./js/markup";
 import Notiflix from "notiflix";
 const searchForm = document.querySelector("#search-form");
