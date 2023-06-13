@@ -8,19 +8,18 @@ import { fetchImages } from './fetchAPI';
 const refs = {
   gallery: document.querySelector('.gallery'),
   form: document.querySelector('#search-form'),
+  observer: document.querySelector('.js-observer'),
   body: document.querySelector('body'),
   input: document.querySelector('.searcher'),
-  loadMoreBtn: document.querySelector(".load-more"),
 };
 let page = 1;
 let total ;
+let observer;
+let isEnd;
 let query;
 let imgId;
-let isEnd;
+let lastObserver;
 
-refs.loadMoreBtn.classList.add("is-hidden");
-refs.loadMoreBtn.addEventListener("click", onLoad);
-refs.form.addEventListener('submit', onSubmit);
 
 
 function buildMarkup(obj) {
@@ -73,14 +72,16 @@ function buildMarkup(obj) {
 }
 function addMarkup(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
- 
+  if (imgId >= total) {
+    createLastObserver();
+  }
   window.scrollBy({
     top: refs.input.firstElementChild.getBoundingClientRect().height,
     behavior: 'smooth',
   });
   lightbox.refresh();
 }
-function onLoad(entries) {
+function onLoad(entries, observer) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.remove();
@@ -88,7 +89,7 @@ function onLoad(entries) {
       fetchImages(query, page)
         .then(data => {
           addMarkup(buildMarkup(data.hits));
-         
+          observer.observe(document.querySelector('.js-observer'));
         })
         .catch(err => console.log(err));
     }
@@ -100,7 +101,7 @@ function onSubmit(evt) {
   evt.preventDefault();
   refs.gallery.innerHTML = '';
   query = evt.currentTarget[0].value;
-
+  createObserver();
   if (query.trim() !== '') {
     fetchImages(query, page)
       .then(data => {
@@ -112,21 +113,39 @@ function onSubmit(evt) {
         }
         total = data.totalHits;
         addMarkup(buildMarkup(data.hits));
-        refs.loadMoreBtn.classList.remove("is-hidden");
-      
+        observer.observe(document.querySelector('.js-observer'));
         Notiflix.Notify.success(`✅ Hooray! We found ${data.totalHits} images.`);
       })
       .catch(err => console.log(err));
-   
   }
 }
 
 
+function createObserver() {
+  const options = {
+    root: null,
+    rootMargin: '400px',
+    trashhold: 0,
+  };
+observer = new IntersectionObserver(onLoad, options);
+}
+function createLastObserver() {
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    trashhold: 0,
+  };
+  lastObserver = new IntersectionObserver(() => {
+    Notiflix.Notify.warning(
+      'We are sorry, but you have reached the end of search results.'
+    );
+  }, options);
+  lastObserver.observe(document.querySelector('.js-last-observer'));
+}
 
 
 
-
-
+refs.form.addEventListener('submit', onSubmit);
 
 
 
