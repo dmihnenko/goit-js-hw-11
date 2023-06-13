@@ -62,7 +62,7 @@ function buildMarkup(obj) {
         </div>`;
     })
     .join('');
-  if (imgId >= total) {
+  if (imgId === total) {
     isEnd = true;
     markup += `<div class="js-last-observer"></div>`;
     return markup;
