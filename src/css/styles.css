@@ -1,161 +1,73 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  background-color: #d9e9f7;
-}
-form {
-  position: relative;
-  width: 40%;
-  margin: 0px auto;
-}
-input,
-button {
-  border: none;
-  outline: none;
-  border-radius: 100px;
-}
-input {
-  width: 100%;
-  height: 42px;
-  background: #fcfbfa;
-  padding-left: 25px;
-}
-button {
-  height: 26px;
-  width: 26px;
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #0d52a0;
-  cursor: pointer;
-}
-button:before {
-  font-family: 'FontAwesome';
-  content: '\f105';
-  color: #f9f0da;
-  font-size: 20px;
-  font-weight: bold;
-}
-.d4 {
-  background-color: #65abec;
-  border-radius: 100px;
-  padding: 20px 0;
-}
-
-.container {
-  padding: 0 30px;
-}
-
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   justify-content: center;
-  margin: 20 auto;
+  margin: 20px auto;
+  display: grid;
 }
 
-.portfolio-wrap {
-  max-width: 1120px;
+.photo-img {
+  max-width: 100%;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+.load-more {
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.portfolio-item {
-  position: relative;
-  border-radius: 30px;
-}
-.portfolio-item-wrap {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  background: black;
-  color: white;
-  border-radius: 30px;
-}
-.portfolio-item img {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.75;
-  transition: 0.5s ease-in-out;
-  border-radius: 30px;
-}
-.portfolio-item-inner {
-  height: 100%;
-  width: 100%;
-  border-width: 0 1px 1px;
-  transition: 0.4s ease-in-out;
-}
-.portfolio-heading {
-  overflow: hidden;
-  transform: translateY(-50%);
-}
-.portfolio-item-inner ul {
-  position: absolute;
-  width: 100%;
-  opacity: 0;
-  list-style: none;
-  font-family: 'Raleway', sans-serif;
-  transition: 0.4s ease-in-out;
-  display: flex;
+  background: #ffffff;
+  border: 0 solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 56px;
   justify-content: center;
-  gap: 20px;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  padding: 0;
-}
-.portfolio-item-inner li {
-  position: relative;
-  font-size: 12px;
-  padding: 10px 0;
-  margin-bottom: 4px;
-}
-.portfolio-item:hover img {
-  opacity: 0.45;
-  transform: scale(1.1);
-}
-.portfolio-item:hover .portfolio-item-inner {
-  position: absolute;
-  top: 0%;
-}
-.portfolio-item:hover ul {
-  opacity: 1;
-  transition-delay: 0.5s;
-}
-@media (min-width: 530px) {
-  .portfolio-item {
-    flex-basis: 50%;
-    flex-shrink: 0;
-  }
-}
-@media (min-width: 768px) {
-  .portfolio-item {
-    flex-basis: 33.333333333%;
-  }
-}
-
-.portfolio-item-inner ul li {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-}
-
-a {
-  color: #fff;
+  line-height: 24px;
+  overflow-wrap: break-word;
+  padding: 24px;
+  text-decoration: none;
+  width: auto;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .is-hidden {
   display: none;
+}
+
+.form-field {
+  width: 360px;
+  background: #fff;
+  color: #a3a3a3;
+  font: inherit;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  border: 0;
+  outline: 0;
+  padding: 22px 18px;
+}
+.submit-button {
+  display: block;
+  background: #ffffff;
+  border: 0 solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+
+  justify-content: center;
+  line-height: 24px;
+  overflow-wrap: break-word;
+  padding: 24px;
+  text-decoration: none;
+  width: auto;
+  border-radius: 8px;
+  cursor: pointer;
 }
